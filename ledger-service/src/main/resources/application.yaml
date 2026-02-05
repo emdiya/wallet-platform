@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: ledger-service
+server:
+  port: 8084
+  datasource:
+    url: jdbc:postgresql://localhost:5436/ledgerdb
+    username: ledger
+    password: ledger123
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: ledger-service
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"

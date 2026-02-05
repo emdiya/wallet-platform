@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: wallet-service
+server:
+  port: 8082
+  datasource:
+    url: jdbc:postgresql://localhost:5434/walletdb
+    username: wallet
+    password: wallet123
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
