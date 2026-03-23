@@ -1,27 +1,39 @@
 spring:
   application:
     name: transfer-service
-server:
-  port: 8083
-
   datasource:
-    url: jdbc:postgresql://localhost:5435/transferdb
-    username: transfer
-    password: transfer123
-
+    url: ${TRANSFER_DB_URL}
+    username: ${TRANSFER_DB_USERNAME}
+    password: ${TRANSFER_DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
     open-in-view: false
-
   flyway:
     enabled: true
-
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
+server:
+  port: ${TRANSFER_SERVICE_PORT}
+
 wallet:
-  base-url: http://localhost:8082
+  base-url: ${WALLET_SERVICE_BASE_URL}
+  internal-api-key: ${INTERNAL_API_KEY}
+
+auth-service:
+  base-url: ${AUTH_SERVICE_BASE_URL}
+
+logger-service:
+  base-url: ${LOGGER_SERVICE_BASE_URL}
+
+auth:
+  jwt:
+    secret: ${AUTH_JWT_SECRET}
+
+transfer:
+  kafka:
+    topic: ${TRANSFER_KAFKA_TOPIC}
