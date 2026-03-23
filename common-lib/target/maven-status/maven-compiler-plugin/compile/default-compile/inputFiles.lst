@@ -1,0 +1,9 @@
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/BaseLoggerClient.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/BaseRequestMetadataFilter.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/BaseStartupLogger.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/HttpLogPayloadUtils.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/RemoteLogRequest.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/RequestMetadata.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/RequestMetadataContext.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/logging/RequestMetadataUtils.java
+/Users/kalidy/dev/backend/wallet-platform/common-lib/src/main/java/com/kd/wallet/common/web/ApiResponse.java

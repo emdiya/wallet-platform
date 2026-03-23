@@ -15,6 +15,9 @@ pids+=("$!")
 SERVER_PORT=8082 java -jar /app/wallet-service.jar &
 pids+=("$!")
 
+SERVER_PORT=8085 java -jar /app/logger-service.jar &
+pids+=("$!")
+
 trap 'kill "${pids[@]}" 2>/dev/null || true; wait' TERM INT
 
 wait -n

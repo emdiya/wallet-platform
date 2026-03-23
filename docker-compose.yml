@@ -1,52 +1,42 @@
 services:
   kafka:
-    image: bitnami/kafka:3.7
-    container_name: kafka
+    image: apache/kafka:3.7.2
     ports:
-      - "9092:9092"
-    environment:
-      - KAFKA_CFG_NODE_ID=1
-      - KAFKA_CFG_PROCESS_ROLES=broker,controller
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
-      - ALLOW_PLAINTEXT_LISTENER=yes
+      - "${KAFKA_PORT:-9092}:9092"
     volumes:
-      - kafka_data:/bitnami/kafka
+      - kafka_data:/var/lib/kafka/data
 
   auth-db:
     image: postgres:16
     environment:
-      POSTGRES_DB: authdb
-      POSTGRES_USER: auth
-      POSTGRES_PASSWORD: auth123
-    ports: ["5433:5432"]
+      POSTGRES_DB: ${AUTH_DB_NAME:-authdb}
+      POSTGRES_USER: ${AUTH_DB_USERNAME:-auth}
+      POSTGRES_PASSWORD: ${AUTH_DB_PASSWORD:-auth123}
+    ports: ["${AUTH_DB_PORT:-5433}:5432"]
 
   wallet-db:
     image: postgres:16
     environment:
-      POSTGRES_DB: walletdb
-      POSTGRES_USER: wallet
-      POSTGRES_PASSWORD: wallet123
-    ports: ["5434:5432"]
+      POSTGRES_DB: ${WALLET_DB_NAME:-walletdb}
+      POSTGRES_USER: ${WALLET_DB_USERNAME:-wallet}
+      POSTGRES_PASSWORD: ${WALLET_DB_PASSWORD:-wallet123}
+    ports: ["${WALLET_DB_PORT:-5434}:5432"]
 
   transfer-db:
     image: postgres:16
     environment:
-      POSTGRES_DB: transferdb
-      POSTGRES_USER: transfer
-      POSTGRES_PASSWORD: transfer123
-    ports: ["5435:5432"]
+      POSTGRES_DB: ${TRANSFER_DB_NAME:-transferdb}
+      POSTGRES_USER: ${TRANSFER_DB_USERNAME:-transfer}
+      POSTGRES_PASSWORD: ${TRANSFER_DB_PASSWORD:-transfer123}
+    ports: ["${TRANSFER_DB_PORT:-5435}:5432"]
 
   ledger-db:
     image: postgres:16
     environment:
-      POSTGRES_DB: ledgerdb
-      POSTGRES_USER: ledger
-      POSTGRES_PASSWORD: ledger123
-    ports: ["5436:5432"]
+      POSTGRES_DB: ${LEDGER_DB_NAME:-ledgerdb}
+      POSTGRES_USER: ${LEDGER_DB_USERNAME:-ledger}
+      POSTGRES_PASSWORD: ${LEDGER_DB_PASSWORD:-ledger123}
+    ports: ["${LEDGER_DB_PORT:-5436}:5432"]
 
 volumes:
   kafka_data:
-
