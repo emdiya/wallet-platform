@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: logger-service
+
+server:
+  port: ${LOGGER_SERVICE_PORT}
+
+logger:
+  file:
+    directory: ${LOGGER_FILE_DIRECTORY}
