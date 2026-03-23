@@ -1,28 +1,34 @@
 spring:
   application:
     name: ledger-service
-server:
-  port: 8084
   datasource:
-    url: jdbc:postgresql://localhost:5436/ledgerdb
-    username: ledger
-    password: ledger123
-
+    url: ${LEDGER_DB_URL}
+    username: ${LEDGER_DB_USERNAME}
+    password: ${LEDGER_DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
     open-in-view: false
-
   flyway:
     enabled: true
-
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     consumer:
-      group-id: ledger-service
+      group-id: ${LEDGER_KAFKA_GROUP_ID}
       auto-offset-reset: earliest
       enable-auto-commit: false
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: record
+
+server:
+  port: ${LEDGER_SERVICE_PORT}
+
+ledger:
+  kafka:
+    wallet-topic: ${WALLET_KAFKA_TOPIC}
+    transfer-topic: ${TRANSFER_KAFKA_TOPIC}
+
+logger-service:
+  base-url: ${LOGGER_SERVICE_BASE_URL}
