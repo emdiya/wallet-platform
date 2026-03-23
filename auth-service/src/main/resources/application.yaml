@@ -1,17 +1,28 @@
 spring:
   application:
     name: auth-service
-server:
-  port: 8081
   datasource:
-    url: jdbc:postgresql://localhost:5433/authdb
-    username: auth
-    password: auth123
-
+    url: ${AUTH_DB_URL}
+    username: ${AUTH_DB_USERNAME}
+    password: ${AUTH_DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
     open-in-view: false
-
   flyway:
     enabled: true
+
+server:
+  port: ${AUTH_SERVICE_PORT}
+
+auth:
+  jwt:
+    secret: ${AUTH_JWT_SECRET}
+    expiration-seconds: ${AUTH_JWT_EXPIRATION_SECONDS}
+
+logger-service:
+  base-url: ${LOGGER_SERVICE_BASE_URL}
+
+wallet-service:
+  base-url: ${WALLET_SERVICE_BASE_URL}
+  internal-api-key: ${INTERNAL_API_KEY}
